@@ -1,5 +1,5 @@
 name: Deploy With Docker to AWS Server
-# 실행 조건
+# 실행 조건.
 on:
   push:
     # main으로 commit & push인 경우 
