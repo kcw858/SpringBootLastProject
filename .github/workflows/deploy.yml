@@ -82,7 +82,7 @@ jobs:
      # Deploy on service DockerHub Image using
      - name: DockerHub Image using
        run: |
-         ssh ubuntu@3.35.11.75 << 'EOF'
+         ssh ubuntu@15.164.49.76 << 'EOF'
           docker stop last-app || true
           docker rm last-app || true
           docker pull ${{secrets.DOCKER_USERNAME}}/last-app:latest
