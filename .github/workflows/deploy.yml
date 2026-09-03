@@ -52,7 +52,7 @@ jobs:
      #Docker Image 생성
      - name: Build Docker Image 생성
        run: |
-         docker build -t ${{secrets.DOCKER_USERNAME}}/last-app:latest
+         docker build -t ${{secrets.DOCKER_USERNAME}}/last-app:latest .
      #Docker Hub Push
      - name: Docker Push
        run: |
