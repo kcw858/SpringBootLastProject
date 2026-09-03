@@ -76,10 +76,10 @@ jobs:
      - name: DockerHub image Using
        run: |
          ssh ubuntu@15.164.49.76 << 'EOF'
-         docker stop last-app || true
-         docker rm last-app || true
-         docker pull ${{secrets.DOCKER_NAME}}/last-app:latest
-         docker run -d --name last-app -p 9090:9090 ${{secrets.DOCKER_NAME}}/last-app:latest
-      EOF
+          docker stop last-app || true
+          docker rm last-app || true
+          docker pull ${{secrets.DOCKER_NAME}}/last-app:latest
+          docker run -d --name last-app -p 9090:9090 ${{secrets.DOCKER_NAME}}/last-app:latest
+         EOF
 
   
