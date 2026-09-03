@@ -15,7 +15,6 @@ jobs:
     # name => stage, step(jenkins)
     steps:
      #어떤 소스를 가지고 올건지 => src/build.gradle gradlew Ddocketfile
-     #코드 체크
      - name: Checkout:repository
        uses: actions/checkout@v4
      #JDK 설정 => SpringBoot프로젝트를 build => JDK 설정
