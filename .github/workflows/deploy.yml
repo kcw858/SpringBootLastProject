@@ -73,20 +73,14 @@ jobs:
      - name: Add Known_hosts
        run: |
          ssh-keyscan -H ed25519 15.164.49.76 >> ~/.ssh/known_hosts
-     # Jar파일을 AWS 전송 => Docker이미지 
-     - name: Deploy to Server with rsync 
+     # Deploy on service DockerHub Image using
+     - name: DockerHub image Using
        run: |
-         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.jar ubuntu@3.34.45.90:~/app
-     # 9090 포트 Kill => container 삭제 
-     - name: Run command 
-       run: |
-         ssh -i ~/.ssh/id_ed25519 ubuntu@3.34.45.90 << 'EOF'
-           pkill -f 'java -jar' || true 
-           set -a 
-           source ~/app/.env 
-           set +a 
-           nohup java -jar ~/app/SpringBootLastProject-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
-         EOF
-     # 9090 포트 다시 구동 => docker run
+         ssh ubuntu@15.164.49.76 << 'EOF'
+         docker stop last-app || true
+         docker rm last-app || true
+         docker pull ${{secrets.DOCKER_NAME}}/last-app:latest
+         docker run -d --name last-app -p 9090:9090 ${{secrets.DOCKER_NAME}}/last-app:latest
+      EOF
 
   
